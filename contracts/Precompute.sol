@@ -3,10 +3,13 @@ pragma solidity ^0.8.13;
 
 import "./TestContract.sol";
 
+/// @notice this is the contract which helps you precompute the contract address of test contract
 contract Factory {
 
-    // Compute the address of the contract to be deployed
-    //_salt is a random number used to create an address
+    /// @notice - Compute the address of the contract to be deployed.
+    /// @param _owner can be any address
+    /// @param _foo is just a random number that is stored in the testContract
+    /// @param _salt is a random number used to create an address
     function getAddress(address _owner, uint _foo, uint _salt)
         public
         view
@@ -27,6 +30,11 @@ contract Factory {
     }
 
 
+    /// @notice this function needs to be called to create a new instance of TestContract. 
+    // Once Called it will have the same contract address as the once when getAddress function was called
+    /// @param _owner Should be the same as given in getAddress
+    /// @param _foo Should be the same as given in getAddress
+    /// @param _salt Should be the same as given in getAddress
     function deploy(
         address _owner,
         uint _foo,
